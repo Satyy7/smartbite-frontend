@@ -11,6 +11,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useAuth } from "@/context/AuthContext";
 import { logout } from "@/lib/auth";
+import { useRouter } from "next/navigation";
 import {
   LogOut,
   ShoppingCart,
@@ -211,12 +212,14 @@ function PremiumCart({ cartCount, onClick }: any) {
 }
 
 function PremiumLogin() {
+  const router = useRouter();
+
   return (
-    <Link
-      href="/login"
+    <button
+      onClick={() => router.push("/login")}
       className="flex items-center gap-1 px-3 py-1.5 rounded-lg hover:bg-white/30 transition"
     >
       <LogIn size={16} /> Login
-    </Link>
+    </button>
   );
 }
