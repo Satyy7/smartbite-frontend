@@ -36,11 +36,8 @@ export default function Navbar() {
   const [cartCount, setCartCount] = useState(0);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
-    if (latest > lastScroll && latest > 100) {
-      setHidden(true);
-    } else {
-      setHidden(false);
-    }
+    if (latest > lastScroll && latest > 100) setHidden(true);
+    else setHidden(false);
     setLastScroll(latest);
   });
 
@@ -49,11 +46,8 @@ export default function Navbar() {
       if (
         dropdownRef.current &&
         !dropdownRef.current.contains(event.target as Node)
-      ) {
-        setOpen(false);
-      }
+      ) setOpen(false);
     }
-
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
@@ -94,10 +88,7 @@ export default function Navbar() {
           backdrop-blur-2xl
           bg-linear-to-br from-white/60 via-white/40 to-white/30
           border border-white/30
-          shadow-[0_10px_50px_rgba(0,0,0,0.08),inset_0_1px_1px_rgba(255,255,255,0.4)]
-          before:absolute before:inset-0 before:rounded-full
-          before:bg-linear-to-r before:from-transparent before:via-white/40 before:to-transparent
-          before:opacity-0 hover:before:opacity-100 before:transition"
+          shadow-[0_10px_50px_rgba(0,0,0,0.08),inset_0_1px_1px_rgba(255,255,255,0.4)]"
         >
 
           {/* Logo */}
@@ -182,7 +173,7 @@ export default function Navbar() {
 
 function PremiumNavItem({ label, href, icon: Icon, active }: any) {
   return (
-    <motion.div whileHover={{ y: -3 }} className="relative group">
+    <motion.div whileHover={{ y: -3 }}>
       <Link
         href={href}
         className={`flex items-center gap-1 px-3 py-1.5 rounded-lg transition
@@ -223,7 +214,7 @@ function PremiumLogin() {
   return (
     <Link
       href="/login"
-      className="flex items-center gap-1 px-3 py-1.5 rounded-lg hover:bg-white/30"
+      className="flex items-center gap-1 px-3 py-1.5 rounded-lg hover:bg-white/30 transition"
     >
       <LogIn size={16} /> Login
     </Link>
